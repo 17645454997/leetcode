@@ -1,7 +1,8 @@
 package swordfingeroffer;
 
-public class Solution9 {
 
+//错误的代码
+public class Solution9 {
 
     public static boolean exist(char[][] board, String word) {
         char[] wordArray = word.toCharArray();
