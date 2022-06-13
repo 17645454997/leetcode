@@ -1,0 +1,34 @@
+
+public class moveZeros {
+
+    public static int[] moveZeros(int []nums){
+        //解法一
+        //1.循环记录0的个数
+        //2.非0的元素放到前面去，0的元素放到后面
+        // 解法二
+        //新弄一个数组 i指向头 j 指向尾  所有0往后面放  非0往前面放
+        //解法三
+        //同向双指针  新开一个下标 i指向0的位置,j往后走，j指向非0 位置，交换i，j
+        int i=0,j=0;
+        int n = nums.length;
+        while(j<n){
+            if(nums[j] !=0){
+                int temp = nums[i];
+                nums[i] =nums[j];
+                nums[j] =temp;
+                i++;
+            }
+            j++;
+        }
+
+        return nums;
+    }
+
+    public static void main(String[] args) {
+        int [] nums = new int[]{0,1,0,3,12};
+        moveZeros(nums);
+        for(int x:nums){
+            System.out.println(x);
+        }
+    }
+}
