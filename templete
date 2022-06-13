@@ -1,0 +1,60 @@
+   自顶向下解法
+  1.先列出整体框架（先不要关注实现细节）
+  2.列出相关的解体步骤和对应的方法
+  3.完善对应方法 
+   可参考isPalindrome
+   优化的高效解法可参考 isPalindromeV2
+  
+ 
+public class isPalindrome {
+    public static   boolean isPalindrome(String s){
+         //先列出整体框架（先不要关注实现细节）
+        // 1.去除字符串中非字母和数字的部分 2.翻转字符串 3.比较字符串
+        String filterString =  filterStringHelper(s);
+        String reverseStr  =  reverseStrHelper(filterString);
+        return  filterString.equalsIgnoreCase(reverseStr);
+    }
+
+    private static String reverseStrHelper(String filterString) {
+        return  new StringBuffer(filterString).reverse().toString();
+    }
+
+    private static String filterStringHelper(String s) {
+       return s.replaceAll("[^0-9a-zA-Z]","");
+    }
+
+
+    public static   boolean isPalindromeV2(String s){
+        //先列出整体框架（先不要关注实现细节）
+        //1.初始化两个指针head和tail
+        // 2.初始化两个char字符来代表头字符和尾字符
+        // 3.循环进行比较判断 如果不符合字母和数字条件跳过
+        // 4.系统函数isLetterOrDigit()判断是否是字符或者字符串
+        //  toLowerCase()全部转换为小写判断头字母是否等于末尾字母 移动前后指针
+        int head=0, tail = s.length()-1;
+        char cHead,cTail;
+        while(head<=tail){
+         cHead =s.charAt(head);
+         cTail = s.charAt(tail);
+         if(!Character.isLetterOrDigit(cHead)){
+             head++;
+         }else if(!Character.isLetterOrDigit(cTail)){
+             tail--;
+         }else{
+             if(Character.toLowerCase(cHead) !=Character.toLowerCase(cTail)){
+                 return  false;
+             }
+             head++;
+             tail--;
+         }
+        }
+
+       return true;
+    }
+
+
+    public static void main(String[] args) {
+        System.out.println(isPalindrome("A man, a plan, a canal: Panama"));
+        System.out.println(isPalindromeV2("A man, a plan, a canal: Panama"));
+    }
+}
