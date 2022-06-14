@@ -1,0 +1,41 @@
+public class maxArea {
+    public static int maxArea(int []nums){
+        //整体思路非最优解
+        //两遍for loop 遍历 数组  i 指针 指向0,j 指针指向i+1
+        //遍历过程中收集并更新最大值
+        int max =0;
+        for(int i=0;i<nums.length;i++){
+            for(int j=i+1;j<nums.length;j++){
+                int area = (j-i) * Math.min(nums[i],nums[j]);
+                max = Math.max(max,area);
+            }
+        }
+        return  max;
+    }
+
+    //左右夹逼法
+    //宽度是width 通过左右指针维护的  高度是nums[i] 或者nums[j]
+    public static  int maxAreaV2(int[]nums){
+        int max=0;
+        int i=0;
+        int j =nums.length-1;
+        while (i<j){
+             int width= j-i; 
+              //因为可以收集的水取决于高度小的那个柱子，木桶效应
+            int area = width * Math.min(nums[i],nums[j]);
+            max = Math.max(area,max);
+            if(nums[i]<nums[j]){
+                i++;
+            }else{
+                j--;
+            }
+        }
+        return  max;
+    }
+
+    public static void main(String[] args) {
+        int  []nums = new int []{1,8,6,2,5,4,8,3,7};
+        System.out.println(maxArea(nums));
+        System.out.println(maxAreaV2(nums));
+    }
+}
