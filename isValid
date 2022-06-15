@@ -1,0 +1,46 @@
+
+public class isValid {
+    public boolean isValid(String s){
+        Stack<Character> stack = new Stack<>();
+        //遇到左括号就把右括号入栈,然后遇到右括号的时候就去看栈是否为空 并且栈顶的元素是否和右括号相等
+        for(Character c : s.toCharArray()){
+            if(c == '('){
+                stack.push(')');
+            }else if (c == '['){
+                stack.push(')');
+            }else if(c ==  '{'){
+                stack.push('}');
+            }else if(stack.isEmpty() || stack.pop()!=c){
+                return  false;
+            }
+        }
+        return  stack.isEmpty();
+    }
+         public boolean isValidV2(String s){
+        Stack<Character> stack = new Stack<>();
+        //遇到左括号就入栈左括号
+        for(Character c : s.toCharArray()){
+            if(c == '('){
+                stack.push('(');
+            }else if (c == '['){
+                stack.push('[');
+            }else if(c ==  '{'){
+                stack.push('{');
+            }else{
+                if(stack.isEmpty()){
+                    return  false;
+                }
+                Character top = stack.pop();
+                boolean c1 = (c == ')' && top == '(');
+                boolean c2 = (c == '}' && top == '{');
+                boolean c3 = (c == ']' && top == '[');
+                boolean match = c1 ||  c2 ||c3;
+                if(!match){
+                    return   false;
+                }
+            }
+
+        }
+        return  stack.isEmpty();
+    }
+}
