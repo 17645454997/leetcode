@@ -1,0 +1,31 @@
+public class MinStack {
+
+    //两个队列去实现最小栈
+    //最小栈先入栈最大值
+    //然后每次入栈都和栈顶元素进行比较
+    Deque<Integer> nomalStack;
+    Deque<Integer>minStack;
+    public MinStack() {
+        minStack = new LinkedList<Integer>();
+        nomalStack = new LinkedList<Integer>();
+        minStack.push(Integer.MAX_VALUE);
+    }
+
+    public void push(int val) {
+        nomalStack.push(val);
+        minStack.push(Math.min(minStack.peek(),val));
+    }
+
+    public void pop() {
+        nomalStack.pop();
+        minStack.pop();
+    }
+
+    public int top() {
+        return nomalStack.peek();
+    }
+
+    public int getMin() {
+        return minStack.peek();
+    }
+}
