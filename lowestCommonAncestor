@@ -1,0 +1,27 @@
+     //二叉树最近公共祖先
+    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+        //如果root 为空 或者root == p 或者 root == q 直接返回root
+        //递归左子树递归右子树 左子树是否为空 是的话返回右子树
+        //右子树是否为空 是的话返回左子树
+        //左右子树都不为空 返回root
+        if(root ==null || root ==p || root ==q) return  root;
+        TreeNode left = lowestCommonAncestor(root.left,p,q);
+        TreeNode right = lowestCommonAncestor(root.right,p,q);
+        return  left==null?right:right==null?left:root;
+    }
+
+
+    //二叉搜索树的最近公共祖先
+    public TreeNode lowestCommonAncestorV1(TreeNode root, TreeNode p, TreeNode q) {
+       TreeNode ans  = root;
+       while (true){
+         if(p.val >ans.val && q.val>ans.val){
+             ans = ans.right;
+         }else if(p.val<ans.val && q.val<ans.val){
+             ans = ans.left;
+         }else{
+             break;
+         }
+       }
+       return ans;
+    }
