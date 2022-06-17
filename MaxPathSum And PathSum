@@ -1,0 +1,30 @@
+public class maxPathSum {
+
+     int maxValue = Integer.MIN_VALUE;
+    public int maxPathSum(TreeNode root) {
+       dfs(root);
+       return  maxValue;
+    }
+    //左子树加和的最大值 + 右子树最大贡献值+根节点值是当前层最大贡献值
+    //向下选择的时候选择左右子树最大的
+    private int  dfs(TreeNode root) {
+        if(root ==null) return 0;
+        int leftSum = Math.max(dfs(root.left),0);
+        int rightSum = Math.max(dfs(root.right),0);
+        maxValue = Math.max(maxValue,root.val+leftSum+rightSum);
+        return  root.val + Math.max(leftSum,rightSum);
+    }
+}
+
+
+public class hasPathSum {
+
+    public boolean hasPathSum(TreeNode root, int targetSum) {
+         if(root == null) return  false;
+       //先判断是否到根节点了 并且根节点的值减去目标值等于0
+        if(root.left == null && root.right == null && root.val-targetSum ==0) return  true;
+        return  hasPathSum(root.left,targetSum-root.val) || hasPathSum(root.right,targetSum-root.val);
+    }
+}
+
+
