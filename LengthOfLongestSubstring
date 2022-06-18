@@ -1,0 +1,22 @@
+
+public class lengthOfLongestSubstring {
+    //双指针滑动窗口+hashset  right指针向右移动，如果set里面含有right指向的字符
+    //set移除掉左指针指向的元素,左指针向后移动
+    public int lengthOfLongestSubstring(String s) {
+       if(s==null || s.length()==0) return  0;
+        Set<Character> set = new HashSet<Character>();
+        int maxLen =0;
+       int left =0,right=0;
+       while (left<=right && right<s.length()){
+           if(set.contains(s.charAt(right))){
+               set.remove(s.charAt(left));
+               left++;
+           }else{
+               set.add(s.charAt(right));
+               right++;
+           }
+           maxLen =Math.max(maxLen,right-left);
+       }
+       return  maxLen;
+    }
+}
