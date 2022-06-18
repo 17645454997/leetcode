@@ -1,0 +1,29 @@
+class Solution {
+    public String longestPalindrome(String s) {
+     int maxLenStart =0;
+        int maxLen = 0;
+        for(int i=0;i<s.length();i++){
+            int left = i-1;
+            int right = i+1;
+            int currentLen =1;
+            while(left>=0 &&s.charAt(left) == s.charAt(i)){
+                left--;
+                currentLen++;
+            }
+            while(right<s.length() && s.charAt(i) == s.charAt(right)){
+                right++;
+                currentLen++;
+            }
+            while(left>=0 && right<s.length() && s.charAt(left)==s.charAt(right)){
+                right++;
+                left--;
+                currentLen+=2;
+            }
+            if(currentLen>maxLen){
+                maxLen = currentLen;
+                maxLenStart = left+1;
+            }
+        }
+        return  s.substring(maxLenStart,maxLenStart+maxLen);   
+    }
+}
