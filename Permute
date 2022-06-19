@@ -1,0 +1,64 @@
+public class 全排列I {
+    int []nums  ={1,2,3};
+    boolean [] visited = new boolean[nums.length];
+    List<Integer> path = new ArrayList<>();
+    List<List<Integer>> result = new ArrayList<>();
+
+    public  void backTracking(int []nums){
+            //判断：结束条件
+            if (path.size() == nums.length) {
+                result.add(new ArrayList<>(path));
+                return;
+            }
+            for (int i = 0; i < nums.length; i++) {
+                if(!visited[i]) {
+                //先序  首次进入节点 添加到路径中
+                path.add(nums[i]);
+                // 标记使用
+                  visited[i] = true;
+                //递归
+                backTracking(nums);
+                //后续
+                path.remove(path.size() - 1);
+                //取消标记
+                visited[i] =false;
+            }
+        }
+    }
+}
+
+    //包含重复数字的 全排列
+    int []nums  ={1,1,2,3};
+    boolean [] visited = new boolean[nums.length];
+    List<Integer> path = new ArrayList<>();
+    List<List<Integer>> result = new ArrayList<>();
+
+    public  void backTracking(int []nums){
+        //有重复元素  取重 需要排序
+        Arrays.sort(nums);
+        //判断：结束条件
+        if (path.size() == nums.length) {
+            result.add(new ArrayList<>(path));
+            return;
+        }
+        for (int i = 0; i < nums.length; i++) {
+             // 判断是否有重复数字，有的话跳过
+            if(i>0 && nums[i] == nums [i-1] && !visited[i-1]){
+                continue;
+            }
+            if(!visited[i]) {
+                //先序  首次进入节点 添加到路径中
+                path.add(nums[i]);
+                // 标记使用
+                visited[i] = true;
+                //递归
+                backTracking(nums);
+                //后续
+                path.remove(path.size() - 1);
+                //取消标记
+                visited[i] =false;
+            }
+        }
+    }
+
+}
