@@ -1,0 +1,30 @@
+class Solution {
+           //因为0 和1 没有数字所以初始化为空
+    String [] letterArray = {"","","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"};
+      List<String> pathList = new ArrayList<>();
+    public List<String> letterCombinations(String digits) {
+
+        if(digits.length() ==0 || digits == null) return pathList;
+        dfs(new StringBuilder(),digits);
+        return pathList;
+    }
+
+    private void  dfs(StringBuilder path, String digits) {
+          //base case return element
+        if(path.length() == digits.length()){
+            pathList.add(path.toString());
+            return;
+        }
+        // focus on currentIndex
+        int currentIndex = digits.charAt(path.length())-'0';
+        // for loop
+        for(char c : letterArray[currentIndex].toCharArray()){
+            // bulid element
+            path.append(c);
+            //recursion
+            dfs(path,digits);
+            //recall
+            path.deleteCharAt(path.length()-1);
+        }
+    }
+}
