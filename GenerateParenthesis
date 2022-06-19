@@ -1,0 +1,22 @@
+     List<String> pathList  =new ArrayList<>();
+     int maxCount = 0;
+    public List<String> generateParenthesis(int n) {
+         maxCount =n;
+        if(n == 0) return  pathList;
+         dfs("",0,0);
+         return  pathList;
+    }
+
+    private void dfs(String path, int left, int right) {
+        if(path.length() == maxCount*2){
+            pathList.add(path);
+            return;
+        }
+        if(left <maxCount){
+            dfs(path+"(",left+1,right);
+        }
+        // left '('  can add anytime
+         if(right<left){
+            dfs(path+")",left,right+1);
+        }
+    }
