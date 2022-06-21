@@ -1,0 +1,17 @@
+public class BST {
+
+    public boolean isValidBST(TreeNode root) {
+        return  isValidBSTHelper(root,Long.MAX_VALUE,Long.MIN_VALUE);
+    }
+    //递归加中序遍历 递归左子树的时候需要把根结点设置为最大值 ，递归右子树的时候需要把根结点设置为最小值
+    private boolean isValidBSTHelper(TreeNode root, long maxValue, long minValue) {
+        if(root == null) return  true;
+        if(root.val<maxValue && root.val>maxValue && isValidBSTHelper(root.left,root.val,minValue)&&
+        isValidBSTHelper(root.right,maxValue,root.val)){
+            return true;
+        }else{
+            return  false;
+        }
+
+    }
+}
