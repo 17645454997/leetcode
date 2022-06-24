@@ -1,0 +1,26 @@
+public class 最长有效括号 {
+
+    //1.左括号入栈 2.右括号弹栈 ，如果栈为空，右括号入栈 ，如果不为空，说明有一对合法的字符中了，
+    //更新其大小
+    public static int longestValidParentheses(String s) {
+        int maxans =0;
+        Deque<Integer> stack = new LinkedList();
+        stack.push(-1);
+        for(int i=0;i<s.length();i++){
+            if(s.charAt(i) == '('){
+                stack.push(i);
+            }else{
+                stack.pop();
+                if(stack.isEmpty()){
+                    stack.push(i);
+                }else{
+                    maxans =Math.max(maxans,i-stack.peek());
+                }
+            }
+        }
+        return maxans;
+    }
+
+    public static void main(String[] args) {
+        longestValidParentheses("))))()())");
+    }
