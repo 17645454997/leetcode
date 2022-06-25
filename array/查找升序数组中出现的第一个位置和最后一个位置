@@ -1,0 +1,24 @@
+public class Solution {
+    public  int[] searchRange(int []A,int target){
+        //查找到第一个元素的位置
+        int start = Solution.firstGeraterEqual(A,target);
+        if(start == A.length || A[start] != target){
+            return  new  int[] {-1,-1};
+        }
+        //第一个元素的位置和 最后一个元素（特殊处理 是target +1）比target 大1 的值在减去1
+        return new int []{start, Solution.firstGeraterEqual(A,target+1)-1};
+    }
+
+    private static int firstGeraterEqual(int[] A, int target) {
+        int low=0,high = A.length;
+        while (low<high){
+            int mid = low + ((high-low)>>1);
+            if(A[mid]<target){
+                low = mid+1;
+            }else {
+                high= mid;
+            }
+        }
+        return low;
+    }
+}
