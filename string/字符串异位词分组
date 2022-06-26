@@ -1,0 +1,19 @@
+     public  List<List<String>> groupAnagrams(String [] strs){
+         Map<String,List<String>> ans = new HashMap<String,List<String>>();
+         //遍历字符串数组
+         for(String str :strs){
+             //把字符串转换成数组
+             char[]array = str.toCharArray();
+             //对数组进行排序
+             Arrays.sort(array);
+             //利用排序好的数组去创建一个字符串 key
+             String  key = new String(array);
+             //得到对应的key对应的数组
+             List list = ans.getOrDefault(key,new ArrayList<String>());
+             //把字符串放里面
+             list.add(str);
+             //把结果放到最终的结果集 如果原来有值那么覆盖掉
+             ans.put(key,list);
+         }
+         return  new ArrayList<List<String>>(ans.values());
+     }
