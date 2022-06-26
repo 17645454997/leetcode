@@ -1,0 +1,14 @@
+    public int maxSunbArray(int[]nums){
+        //贪心算法
+        //初始化加当前数字之前的数组和
+        int pre=0;
+        //首先让最大子数组和等于数组的第0位元素
+        int max = nums[0];
+        //for loop 遍历数组
+        for(int num:nums){
+            //如果前面的数加上当前的数大于当前的数就更新pre，否则丢弃前面的数
+            pre = Math.max(num,pre+num);
+            max = Math.max(pre,max);
+        }
+        return max;
+    }
