@@ -1,0 +1,28 @@
+     public List<List<Integer>> permuteUnique(int []nums){
+         //声明结果集
+         List<List<Integer>> list = new ArrayList<>();
+         //对入参数组进行排序 ，因为有去重操作
+         Arrays.sort(nums);
+         //回溯 多加上一个标记数组
+         backTracking(list,new ArrayList<>(),nums,new boolean[nums.length]);
+         return  list;
+     }
+
+    private void backTracking(List<List<Integer>> list, ArrayList<Integer> tempList, int[] nums, boolean[] used) {
+         //如果临时数组的长度等于 入参数组的长度，加入到结果集
+        if(tempList.size()== nums.length){
+            list.add(new ArrayList<>(tempList));
+        }else{
+            //for loop nums 如果i位置访问过 或者i>0 nums[i] == nums[i-1] 并且 i-1 没有访问过 跳过
+            for(int i=0;i<nums.length;i++){
+                if(used[i] || i>0 && nums[i] == nums[i-1] && !used[i-1])continue;
+                 //标记为已经用过
+                used[i] =true;
+                tempList.add(nums[i]);
+                backTracking(list,tempList,nums,used);
+                //回溯
+                used[i] = false;
+                tempList.remove(tempList.size()-1);
+            }
+        }
+    }
