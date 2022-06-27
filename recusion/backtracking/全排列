@@ -1,0 +1,26 @@
+public List<List<Integer>> premute(int [] nums){
+       //结果数组
+       List<List<Integer>> list = new ArrayList<>();
+       //对输入的数组进行排序 需要
+        //Arrays.sort(nums); not necessary
+       //回溯数组
+       backTracking(list,new ArrayList<>(),nums);
+       return  list;
+   }
+
+    private void backTracking(List<List<Integer>> list, ArrayList<Integer> tempList, int[] nums) {
+      //如果临时数组的长度等于入参数组的长度，加入到结果中
+        if(tempList.size() == nums.length){
+            list.add(new ArrayList<>(tempList));
+        }else{
+            // for loop nums 临时数组中有重复元素跳过
+            for(int i=0;i<nums.length;i++){
+                if(tempList.contains(nums[i]))continue;
+                tempList.add(nums[i]);
+                //递归
+                backTracking(list,tempList,nums);
+                //回溯
+                tempList.remove(tempList.size()-1);
+            }
+        }
+   }
