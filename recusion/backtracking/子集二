@@ -1,0 +1,25 @@
+   public List<List<Integer>> subsetsWithDup(int []nums){
+      //建立结果集
+       List<List<Integer>>list = new ArrayList<>();
+      //对数组进行排序
+        Arrays.sort(nums);
+      //回溯构建结果集
+      backTracking(list,new ArrayList<>(),nums,0);
+      return  list;
+    }
+
+    private void backTracking(List<List<Integer>> list, ArrayList<Integer> tempList, int[] nums, int start) {
+         //把临时数组加入到结果集中
+        list.add(new ArrayList<>(tempList));
+        // for loop 遍历nums 然后去重
+        for(int i = start;i<nums.length;i++){
+            //去重 如果 i>0 && nums[i] == nums[i-1] continue;
+            if(i>start && nums[i] == nums[i-1])continue; //跳过重复元素
+             //数组元素加入到临时数组中
+            tempList.add(nums[i]);
+            //递归下一个位置
+            backTracking(list,tempList,nums,i+1);
+            //回溯删除临时数组中的元素
+             tempList.remove(tempList.size()-1);
+        }
+    }
