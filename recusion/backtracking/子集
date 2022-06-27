@@ -1,0 +1,24 @@
+     //回溯模板
+   public List<List<Integer>> subsets(int []nums) {
+       //结果集用于收集数据
+       List<List<Integer>> list = new ArrayList<>();
+       //对数组进行排序
+       Arrays.sort(nums);
+       //回溯进行填充结果数组  params(结果数组，临时数组，原有参数数组，起始遍历的位置)
+       backTracking(list,new ArrayList<>(),nums,0);
+       //返回结果数组
+       return list;
+   }
+
+    private void backTracking(List<List<Integer>> list, ArrayList<Integer> tempList, int[] nums, int start) {
+       //把临时数组添加到结果数组中
+       list.add(new ArrayList<>(tempList));
+       //for loop 遍历数组 将参数数组中的值添加到临时数组中
+        for(int i= start;i<nums.length;i++){
+            tempList.add(nums[i]);
+            //继续递归下一个元素，start 更新起始位置i+1
+            backTracking(list,tempList,nums,i+1);
+            //回溯清空临时数组
+            tempList.remove(tempList.size()-1);
+        }
+   }
