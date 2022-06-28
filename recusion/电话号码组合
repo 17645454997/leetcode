@@ -15,13 +15,13 @@ class Solution {
             pathList.add(path.toString());
             return;
         }
-        // focus on currentIndex
+        // focus on currentIndex 定位到第0位元素 下次定位带第1个元素
         int currentIndex = digits.charAt(path.length())-'0';
-        // for loop
+        // for loop 定义为到对应的字符串后
         for(char c : letterArray[currentIndex].toCharArray()){
             // bulid element
             path.append(c);
-            //recursion
+            //recusion
             dfs(path,digits);
             //recall
             path.deleteCharAt(path.length()-1);
