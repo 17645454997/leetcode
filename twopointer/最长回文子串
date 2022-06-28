@@ -6,14 +6,17 @@ class Solution {
             int left = i-1;
             int right = i+1;
             int currentLen =1;
+            //遍历到的i 和左边的值相等
             while(left>=0 &&s.charAt(left) == s.charAt(i)){
                 left--;
                 currentLen++;
             }
+              //遍历到的i 和右边的值相等
             while(right<s.length() && s.charAt(i) == s.charAt(right)){
                 right++;
                 currentLen++;
             }
+                 //遍历到的i和左右相等
             while(left>=0 && right<s.length() && s.charAt(left)==s.charAt(right)){
                 right++;
                 left--;
