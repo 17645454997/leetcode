@@ -1,6 +1,6 @@
 
 public class moveZeros {
-
+ 
     public static int[] moveZeros(int []nums){
         //解法一
         //1.循环记录0的个数
@@ -12,6 +12,7 @@ public class moveZeros {
         int i=0,j=0;
         int n = nums.length;
         while(j<n){
+        //i先找到0的位置
             if(nums[j] !=0){
                 int temp = nums[i];
                 nums[i] =nums[j];
