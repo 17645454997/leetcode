@@ -10,17 +10,17 @@ public class MinStack {
         nomalStack = new LinkedList<Integer>();
         minStack.push(Integer.MAX_VALUE);
     }
-
+   //推的时候判断一下是否小于最小栈的栈顶在推
     public void push(int val) {
         nomalStack.push(val);
         minStack.push(Math.min(minStack.peek(),val));
     }
-
+    //弹栈的时候一起弹
     public void pop() {
         nomalStack.pop();
         minStack.pop();
     }
-
+    //取最上面的值从正常的栈里面取
     public int top() {
         return nomalStack.peek();
     }
