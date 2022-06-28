@@ -1,0 +1,26 @@
+ public int trap(int []A){
+        //双指针 左指针指向第一个元素，右指针指向最后一个元素
+        int left =0;
+        //因为java取不到数组的最后一个下标
+        int right= A.length-1;
+        //两个值分别记录左边的最大值和右边的最大值
+        int leftMax = 0;
+        int rightMax = 0;
+        int ans =0;
+        while(left<right){
+            //计算出左右最大的值
+            leftMax =Math.max(leftMax,A[left]);
+            rightMax =Math.max(rightMax,A[right]);
+            //能够接的雨水取决于最大值小的那一方
+            if(leftMax<rightMax){
+                ans+=leftMax-A[left];
+                //移动左指针
+                left++;
+            }else{
+                ans+=rightMax-A[right];
+                //移动右指针
+                right--;
+            }
+        }
+        return  ans;
+    }
