@@ -1,0 +1,14 @@
+    //跳跃游戏
+    public boolean canJump(int[] nums) {
+        int n = nums.length;
+        //定义一个可以跳跃的最远的距离
+        int max = 0;
+        for(int i=0;i<n;i++){
+            //如果max >i 说明i 这个位置从前面的任何位置跳跃不到
+            if(i>max)return  false;
+            //更新每次能跳跃的最远的距离
+            max =Math.max(max,nums[i]+i);
+
+        }
+        return  true;
+    }
