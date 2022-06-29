@@ -1,0 +1,20 @@
+  //跳跃到最后所需要的最少的次数
+    public int jump(int[] nums) {
+         int n = nums.length;
+         //定义能够到达的边界位置
+         int end=0;
+         //遍历能跳跃的最远的位置
+         int max = 0;
+         //走的步数
+         int steps =0;
+          //不去访问最后一个位置，因为边界值肯定大于等于最后的值 因为如果最后一个位置刚好为边界的情况，会多一次步骤
+         for(int i=0;i<n-1;i++){
+             max = Math.max(max,nums[i]+i);
+              //如果i 到达了边界的位置那么，需要找到下一次的边界位置并且步数+1
+             if(i== end){
+                 end = max;
+                 steps++;
+             }
+         }
+         return  steps;
+    }
