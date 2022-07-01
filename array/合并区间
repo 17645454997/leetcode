@@ -1,0 +1,23 @@
+    //核心思想: 表示范围的数组两个元素
+    // 判断原数组的第0位元素和新创建数组的第一位元素，如果原数组的第0 位元素小于新数组的第1位元素，
+    // 说明这两个数组是能合并的，能合并的把新数组的后面的元素替换为两个比较的数组的第一位元素中较大的
+    public int [][] merge(int [][] intervals){
+        //如果数组中就一个元素，那么直接返回
+        if(intervals.length<1)  return  intervals;
+        //对数组进行排序 避免出现  [[1,4],[0,4]] 第0位元素不是按照顺序排序的情况
+        Arrays.sort(intervals, Comparator.comparingInt(i -> i[0]));
+        //创建收集结果数组
+        List<int[]> result = new ArrayList<>();
+        int [] newInterval = intervals[0];
+        result.add(newInterval);
+        //for loop 入参数组
+        for(int []interval:intervals){
+            if(interval[0]<=newInterval[1]){
+                newInterval[1] = Math.max(interval[1],newInterval[1]);
+            }else{
+                newInterval = interval;
+                result.add(newInterval);
+            }
+        }
+        return  result.toArray(new int[result.size()][]);
+    }
