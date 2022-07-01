@@ -1,0 +1,11 @@
+public class ReverseList {
+    public ListNode reverseList(ListNode head) {
+        if(head ==null || head.next == null) return  head;
+         //用数据之前先判空
+         ListNode nextNode = head.next;
+         ListNode newHead = reverseList(nextNode);
+         newHead.next = head;
+         head.next=null;
+         return  newHead;
+    }
+}
