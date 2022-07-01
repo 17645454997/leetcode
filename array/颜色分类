@@ -1,0 +1,15 @@
+    //nice型 bucket sort
+    int MAX = 3;
+    public void sortColors(int[] nums) {
+        int [] buckets = new int [MAX];
+        for(int num:nums){
+            buckets[num]++;
+        }
+         //val 的值位 0，1，2
+        for(int p=0,val =0;val<MAX;val++){
+            //代表第0位 第1位的数量
+            for(int count=0;count<buckets[val];count++){
+                nums[p++] = val;
+            }
+        }
+    }
